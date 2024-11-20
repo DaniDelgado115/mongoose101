@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Ikasleak API</title>
     <script>
-         async function deleteIkasle() {
-        const id = document.getElementById("deleteId").value;
+        async function deleteIkasle() {
+            const id = document.getElementById("deleteId").value;
+            const response = await fetch(`/api/ikasleak/${id}`, {
+                method: "DELETE",
+            });
 
-        const response = await fetch(`/api/ikasleak/${id}`, {
-          method: "DELETE",
-        });
-
-        const data = await response.json();
-        document.getElementById("deletedIkasle").innerText = JSON.stringify(
-          data,
-          null,
-          2
-        );
-      }
+            const data = await response.json();
+                document.getElementById("deletedIkasle").innerText = JSON.stringify(
+                data,
+                null,
+                2
+            );
+        }
 
         
         async function fetchIkasleak() {
@@ -49,10 +48,13 @@
 <body>
     <h1>Test Ikasleak API</h1>
     <h2>Delete Ikasle</h2>
-        <label for="izena2">Izena:</label>
-        <input type="text" id="izena2" name="izena2" required>
+    <form onsubmit="deleteIkasle();">
+        <label for="deleteId">Izena:</label>
+        <input type="text" id="deleteId" name="izena2" required>
         <br>
         <button type="submit">Delete</button>
+    </form>
+        
     
     <button onclick="fetchIkasleak()">Get Ikasleak</button>
     <pre id="ikasleak"></pre>

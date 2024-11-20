@@ -9,7 +9,14 @@ exports.getIkasleak = async (req, res, next) => {
     }
 };
 
-exports.deleteIkasleById = async (req, res, next)
+exports.deleteIkasleById = async (req, res, next) => {
+    try {
+        const dIkaslea=Ikasle.findByIdAndDelete(req.params.id);
+        res.json(dIkaslea);
+    } catch (error){
+        next(error);
+    }
+}
 exports.createIkasle = async (req, res, next) => {
     try {
         const ikasle = new Ikasle(req.body);
