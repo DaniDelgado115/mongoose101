@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Ikasleak API</title>
     <script>
+         async function deleteIkasle() {
+        const id = document.getElementById("deleteId").value;
+
+        const response = await fetch(`/api/ikasleak/${id}`, {
+          method: "DELETE",
+        });
+
+        const data = await response.json();
+        document.getElementById("deletedIkasle").innerText = JSON.stringify(
+          data,
+          null,
+          2
+        );
+      }
+
+        
         async function fetchIkasleak() {
             const response = await fetch('/api/ikasleak');
             const data = await response.json();
