@@ -14,7 +14,7 @@ exports.deleteIkasleById = async (req, res, next) => {
         const userId = req.params.id;
         console.log(userId);
         const user=Ikasle.findByIdAndDelete(userId);
-        res.json(user);
+        res.send(user);
     } catch (error){
         next(error);
     }
