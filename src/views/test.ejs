@@ -47,17 +47,20 @@
 </head>
 <body>
     <h1>Test Ikasleak API</h1>
+    
+    <button onclick="fetchIkasleak()">Get Ikasleak</button>
+    <pre id="ikasleak"></pre>
+    
     <h2>Delete Ikasle</h2>
     <form onsubmit="deleteIkasle();">
-        <label for="deleteId">Izena:</label>
-        <input type="text" id="deleteId" name="izena2" required>
+        <label for="deleteId">deleteId:</label>
+        <input type="text" id="deleteId" name="deleteId" required>
         <br>
         <button type="submit">Delete</button>
     </form>
         
     
-    <button onclick="fetchIkasleak()">Get Ikasleak</button>
-    <pre id="ikasleak"></pre>
+    
 
     <h2>Create Ikasle</h2>
     <form onsubmit="event.preventDefault(); createIkasle();">

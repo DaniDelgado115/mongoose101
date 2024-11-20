@@ -11,8 +11,10 @@ exports.getIkasleak = async (req, res, next) => {
 
 exports.deleteIkasleById = async (req, res, next) => {
     try {
-        const dIkaslea=Ikasle.findByIdAndDelete(req.params.id);
-        res.json(dIkaslea);
+        const userId = req.params.id;
+        console.log(userId);
+        const user=Ikasle.findByIdAndDelete(userId);
+        res.json(user);
     } catch (error){
         next(error);
     }
