@@ -20,6 +20,20 @@
             );
         }
 
+        async function editIkasle() {
+            const id = document.getElementById("editId").value;
+            const response = await fetch(`/api/ikasleak/${id}`, {
+                method: "POST",
+            });
+
+            const data = await response.json();
+                document.getElementById("deletedIkasle").innerText = JSON.stringify(
+                data,
+                null,
+                2
+            );
+        }
+
         
         async function fetchIkasleak() {
             const response = await fetch('/api/ikasleak');
@@ -60,7 +74,24 @@
     </form>
         
     
-    
+    <h2>Edit Ikasle</h2>
+    <form onsubmit="event.preventDefault(); editIkasle();">
+        <select name="select">
+            <option value="value" disabled,selected>Choose an ikasle</option>
+            <option value="value2">Value 2</option>
+            <option value="value3">Value 3</option>
+          </select>
+        <label for="izena">Izena:</label>
+        <input type="text" id="eizena" name="izena" required>
+        <br>
+        <label for="adina">Adina:</label>
+        <input type="number" id="eadina" name="adina" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="eemail" name="email" required>
+        <br>
+        <button type="submit">Edit</button>
+    </form>
 
     <h2>Create Ikasle</h2>
     <form onsubmit="event.preventDefault(); createIkasle();">

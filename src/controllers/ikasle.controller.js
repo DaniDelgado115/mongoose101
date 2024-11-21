@@ -13,7 +13,7 @@ exports.deleteIkasleById = async (req, res, next) => {
     try {
         const userId = req.params.id;
         console.log(userId);
-        const user=Ikasle.findByIdAndDelete(userId);
+        const user=await Ikasle.findByIdAndDelete(userId);
         res.send(user);
     } catch (error){
         next(error);
@@ -40,5 +40,10 @@ exports.getIkasleById = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.editIkasle = async (req, res, next) => {
+    const ikasle = await Ikasle.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+}
+
 
 // Gehitu beste kontroladoreak...

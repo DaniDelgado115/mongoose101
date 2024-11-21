@@ -7,5 +7,5 @@ router.post('/', ikasleController.createIkasle);
 router.get('/:id', ikasleController.getIkasleById);
 // Gehitu beste routes-ak...
 router.delete('/:id', ikasleController.deleteIkasleById);
-
+router.post('/:id', ikasleController.editIkasle);
 module.exports = router;
