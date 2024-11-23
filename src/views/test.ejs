@@ -18,6 +18,7 @@
                 null,
                 2
             );
+            updateIkasleak();
         }
 
         async function editIkasle() {
@@ -32,8 +33,21 @@
                 null,
                 2
             );
+            updateIkasleak();
         }
 
+        async function updateIkasleak() {
+            const response = await fetch('/api/ikasleak');
+            const data = await response.json();
+    
+            const select = document.getElementById('combobox');
+            data.forEach(ikasle => {
+                const option = document.createElement('option');
+                option.value = ikasle._id;
+                option.textContent = ikasle.email;
+                select.appendChild(option);
+            });
+        }
         
         async function fetchIkasleak() {
             const response = await fetch('/api/ikasleak');
@@ -56,6 +70,7 @@
 
             const data = await response.json();
             document.getElementById('newIkasle').innerText = JSON.stringify(data, null, 2);
+            updateIkasleak();
         }
     </script>
 </head>
@@ -76,11 +91,10 @@
     
     <h2>Edit Ikasle</h2>
     <form onsubmit="event.preventDefault(); editIkasle();">
-        <select name="select">
-            <option value="value" disabled,selected>Choose an ikasle</option>
-            <option value="value2">Value 2</option>
-            <option value="value3">Value 3</option>
-          </select>
+        <select name="select" id="combobox">
+            <option value="value" disabled selected>Choose an ikasle</option>
+        </select>
+        <br>
         <label for="izena">Izena:</label>
         <input type="text" id="eizena" name="izena" required>
         <br>
