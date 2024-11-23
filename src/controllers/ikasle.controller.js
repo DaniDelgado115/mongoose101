@@ -12,9 +12,8 @@ exports.getIkasleak = async (req, res, next) => {
 exports.deleteIkasleById = async (req, res, next) => {
     try {
         const userId = req.params.id;
-        console.log(userId);
         const user=await Ikasle.findByIdAndDelete(userId);
-        res.send(user);
+        res.json({ message: 'Erabiltzailea ezabatua', user});
     } catch (error){
         next(error);
     }
