@@ -41,7 +41,13 @@ exports.getIkasleById = async (req, res, next) => {
 };
 
 exports.editIkasle = async (req, res, next) => {
-    const ikasle = await Ikasle.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    try {
+        const ikasle = await Ikasle.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        res.status(201).json(ikasle);
+    } catch (error){
+        next(error);
+    }
+        
 }
 
 

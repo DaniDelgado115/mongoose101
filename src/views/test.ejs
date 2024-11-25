@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Ikasleak API</title>
     <script>
+        updateIkasleak()
         async function deleteIkasle() {
             const id = document.getElementById("deleteId").value;
             const response = await fetch(`/api/ikasleak/${id}`, {
@@ -22,17 +23,21 @@
         }
 
         async function editIkasle() {
-            const id = document.getElementById("editId").value;
+            const izena = document.getElementById('eizena').value;
+            const adina = document.getElementById('eadina').value;
+            const email = document.getElementById('eemail').value;
+            const combo = document.getElementById("combobox");
+            const id = combo.value;
+            console.log(id)
             const response = await fetch(`/api/ikasleak/${id}`, {
                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({izena, adina, email })
             });
 
-            const data = await response.json();
-                document.getElementById("deletedIkasle").innerText = JSON.stringify(
-                data,
-                null,
-                2
-            );
+            
             updateIkasleak();
         }
 
